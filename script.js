@@ -1,37 +1,46 @@
-//Variáveis
 
+//Variables
 const form = document.querySelector("form")
-const btnClose = document.querySelector("#close")
 
-const peso = document.querySelector("#weight")
-const altura = document.querySelector("#heigh")
+const weight = document.querySelector("#weight")
+const heigh = document.querySelector("#heigh")
 
-const modalWrapper = document.querySelector(".modal-wrapper")
 const alertError = document.querySelector(".alert-error")
 
 
-//Eventos
+// Modal
+const Modal = {
+    
+    wrapper: document.querySelector(".modal-wrapper"),
+    buttonClose: document.querySelector("#close"),
+    message: document.querySelector(".result"),
 
+    open() {
+        Modal.wrapper.classList.add("open")
+    },
+    close(){
+        Modal.wrapper.classList.remove("open")
+    }
+}
 
-//Função Callback
+//Callback function
  form.onsubmit = event => {
     event.preventDefault()
 
-    resultIMC = IMC(peso, altura)
-
-    document.querySelector(".result").innerText = `${resultIMC}`
+    resultIMC = IMC(weight, heigh)
+    Modal.message.innerText = `${resultIMC}`
 
     //Now show Result Screen
-
-    modalWrapper.classList.add("open")
+    Modal.open()
 }
 
-//Funções
-btnClose.onclick = () => modalWrapper.classList.remove("open")
+//functions
+Modal.buttonClose.onclick = () => {
+    Modal.close()
+}
 
-
-function IMC(peso, altura) {
-    return (peso.value / ((altura.value / 100) ** 2)).toFixed(2)
+function IMC(weight, heigh) {
+    return (weight.value / ((heigh.value / 100) ** 2)).toFixed(2)
 }
 
 // function errorIMC(){
