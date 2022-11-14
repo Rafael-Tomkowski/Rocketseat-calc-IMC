@@ -24,10 +24,11 @@
         Digite Somente numeros
     </div>
 
+    <!--Main Screen-->
     <div class="container">
-
         <main class="card">
             <form action="">
+                
                 <h1 class="title">Cálculo de IMC</h1>
                 <div class="input-wrapper">
                     <label for="weight">Peso (Kg)</label>
@@ -36,6 +37,7 @@
                         type="text"
                         placeholder="60">
                 </div>
+
                 <div class="input-wrapper">
                     <label for="heigh">Altura (cm)</label>
                     <input 
@@ -43,27 +45,24 @@
                         type="text"
                         placeholder="165">
                 </div>
-
                 <button type="submit">
                     Calcular IMC
                     <img src="./assets/arrow.svg" alt="">
-                     
-    
                 </button>
+
             </form>
         </main>
-
     </div>
-
+    <!--Result Screen-->
     <div class="modal-wrapper">
         <div class="modal card">
             <h2>
                 
-                <button class="close">
+                <button id="close">
                     <img src="./assets/close.svg" alt="Botão para fechar">
                 </button>
 
-                Seu IMC é de <span></span>
+                Seu IMC é de <span class="result">0</span>
             
             </h2>
         </div>
