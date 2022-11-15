@@ -8,6 +8,10 @@ import {
     AlertError
 } from "./alert-error.js"
 
+import {
+    IMC, errorIMC
+} from "./utils.js"
+
 // Variables
 const form = document.querySelector("form")
 const inputWeight = document.querySelector("#weight")
@@ -40,14 +44,3 @@ form.onsubmit = event => {
     // Now show Result Screen
     Modal.open()
 }
-
-// Functions
-function errorIMC(value) {
-    return isNaN(value) || value == ""
-}
-
-function IMC(weight, heigh) {
-    return (weight / ((heigh / 100) ** 2)).toFixed(2)
-}
-
-// 
