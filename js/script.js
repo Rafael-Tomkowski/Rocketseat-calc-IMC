@@ -3,29 +3,51 @@ import {
     Modal
 } from "./modal.js"
 
-//Variables
+// Alert Error
+import {
+    AlertError
+} from "./alert-error.js"
+
+// Variables
 const form = document.querySelector("form")
-const weight = document.querySelector("#weight")
-const heigh = document.querySelector("#heigh")
+const inputWeight = document.querySelector("#weight")
+const inputHeigh = document.querySelector("#heigh")
+const messageImc = document.querySelector(".result")
 
-// const alertError = document.querySelector(".alert-error")
-
-//Callback function
+// Callback function
 form.onsubmit = event => {
     event.preventDefault()
 
-    let resultIMC = IMC(weight, heigh)
-    Modal.message.innerText = `${resultIMC}`
+    const weight = inputWeight.value
+    const heigh = inputHeigh.value
 
-    //Now show Result Screen
+
+    const verifyError = errorIMC(weight) || errorIMC(heigh)
+
+    // Show error message
+    if (verifyError) {
+        AlertError.open()
+        return;
+    }
+
+    AlertError.close()
+
+    const resultIMC = IMC(weight, heigh)
+
+
+    messageImc.innerText = `${resultIMC}`
+
+    // Now show Result Screen
     Modal.open()
 }
 
-//functions
-function IMC(weight, heigh) {
-    return (weight.value / ((heigh.value / 100) ** 2)).toFixed(2)
+// Functions
+function errorIMC(value) {
+    return isNaN(value) || value == ""
 }
 
-// function errorIMC(){
-//     alertError.classList.add("open")
-// }
+function IMC(weight, heigh) {
+    return (weight / ((heigh / 100) ** 2)).toFixed(2)
+}
+
+// 
