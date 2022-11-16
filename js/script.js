@@ -1,24 +1,20 @@
-// Modal
 import {
     Modal
 } from "./modal.js"
 
-// Alert Error
 import {
     AlertError
 } from "./alert-error.js"
 
 import {
-    IMC, errorIMC
+    calculateIMC,
+    errorIMC
 } from "./utils.js"
 
-// Variables
 const form = document.querySelector("form")
 const inputWeight = document.querySelector("#weight")
 const inputHeigh = document.querySelector("#heigh")
-const messageImc = document.querySelector(".result")
 
-// Callback function
 form.onsubmit = event => {
     event.preventDefault()
 
@@ -26,21 +22,21 @@ form.onsubmit = event => {
     const heigh = inputHeigh.value
 
 
-    const verifyError = errorIMC(weight) || errorIMC(heigh)
+    const verifyIfInputHasNaN = errorIMC(weight) || errorIMC(heigh)
 
-    // Show error message
-    if (verifyError) {
+    if (verifyIfInputHasNaN) {
         AlertError.open()
         return;
     }
 
     AlertError.close()
 
-    const resultIMC = IMC(weight, heigh)
+    const resultIMC = calculateIMC(weight, heigh)
 
+    displayResultMessage(resultIMC)
+}
 
-    messageImc.innerText = `${resultIMC}`
-
-    // Now show Result Screen
+function displayResultMessage(resultIMC) {
+    Modal.message.innerText = `${resultIMC}`
     Modal.open()
 }
