@@ -27,16 +27,20 @@ form.onsubmit = event => {
     if (verifyIfInputHasNaN) {
         AlertError.open()
         return;
-    }
+    } 
 
-    AlertError.close()
 
-    const resultIMC = calculateIMC(weight, heigh)
-
-    displayResultMessage(resultIMC)
+        const resultIMC = calculateIMC(weight, heigh)
+        
+        displayResultMessage(resultIMC)
+    
 }
 
 function displayResultMessage(resultIMC) {
     Modal.message.innerText = `${resultIMC}`
     Modal.open()
 }
+
+inputWeight.oninput = () => AlertError.close()
+inputHeigh.oninput = () => AlertError.close()
+    
